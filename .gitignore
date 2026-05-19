@@ -1,0 +1,12 @@
+# Entornos virtuales
+venv/
+__pycache__/
+
+# Variables de entorno
+.env
+
+# Datos de n8n (para no sobreescribir la DB al clonar)
+n8n_data/
+
+# Modelos locales (si decides usar whisper.cpp o faster-whisper)
+stt_service/models/
