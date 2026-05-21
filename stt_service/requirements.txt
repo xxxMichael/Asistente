@@ -1,0 +1,6 @@
+openwakeword
+pyaudio
+faster-whisper
+requests
+python-dotenv
+numpy
