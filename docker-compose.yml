@@ -8,13 +8,23 @@ services:
     ports:
       - "5678:5678"
     environment:
-      - N8N_HOST=localhost
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=http
       - NODE_ENV=production
-      - WEBHOOK_URL=http://localhost:5678/
+      - WEBHOOK_URL=${MY_DYNAMIC_URL}
       - GENERIC_TIMEZONE=America/Guayaquil
-      # Pasa variables del .env al contenedor si n8n las necesita
       - GEMINI_API_KEY=${GEMINI_API_KEY}
     volumes:
       - ./n8n_data:/home/node/.n8n
+    networks:
+      - gustav_network
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare_tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://n8n_assistant:5678
+    networks:
+      - gustav_network
+
+networks:
+  gustav_network:
+    driver: bridge
