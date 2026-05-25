@@ -20,7 +20,7 @@ N8N_WEBHOOK_URL = os.getenv("WEBHOOK_N8N_URL")
 
 # 1. Configuración de Modelos
 print("Cargando modelo Wake Word 'Gustav'...")
-oww_model = Model(wakeword_models=["./models/goo_stahv.onnx"])
+oww_model = Model(wakeword_model_paths=["./models/goo_stahv.onnx"])
 
 # Inicializamos el reproductor de audio
 pygame.mixer.init()
